@@ -1,0 +1,33 @@
+@use'./../../styles/partials/mixins' as *;
+
+
+.selected-video{
+    background-color: $brainFlix-black;
+    &__video{
+        width: 100%;
+        object-fit: cover;
+    }
+}
+
+@include tablet{
+    .selected-video{
+        background-color: $brainFlix-black;
+        &__video{
+            padding: 0 2rem;
+            width: 100%;
+            object-fit: cover;
+            overflow: hidden;
+        }
+    }
+}
+
+@include desktop{
+    .selected-video{
+        background-color: $brainFlix-black;
+        &__video{
+            padding: 0 3.5rem;
+            width: 70%;
+            object-fit: cover;
+        }
+    }
+}
