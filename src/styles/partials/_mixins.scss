@@ -92,11 +92,12 @@ $desktop-breakpoint: 1024px;
     color: $brainFlix-black;
   }
 
-@mixin section-header-styles{
+@mixin section-header-styles(
+){
     font-size: 0.75rem;
     line-height: 1.25rem;
     font-weight: 700;
-    color: $brainFlix-black;
+    color: $silver;
 }
 
 @mixin sub-header-styles(

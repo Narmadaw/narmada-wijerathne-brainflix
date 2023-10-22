@@ -1,20 +1,28 @@
 @use'./../../styles/partials/mixins' as *;
 
 
-.selected-video{
-    background-color: $brainFlix-black;
+.video-player{
+    &__background{
+        background-color: $brainFlix-darkblack;
+    }
+
     &__video{
         width: 100%;
-        object-fit: cover;
+        object-fit: fill;
     }
 }
 
 @include tablet{
-    .selected-video{
-        background-color: $brainFlix-black;
+
+    .video-player{
+        &__background{
+            height: 530px;
+        }
+    
         &__video{
             padding: 0 2rem;
-            width: 100%;
+            width: 80%;
+            height: 530px;
             object-fit: cover;
             overflow: hidden;
         }
@@ -22,11 +30,15 @@
 }
 
 @include desktop{
-    .selected-video{
-        background-color: $brainFlix-black;
+    .video-player{
+        &__background{
+            height: 530px;
+        }
+        
         &__video{
             padding: 0 3.5rem;
             width: 70%;
+            height: 530px;
             object-fit: cover;
         }
     }
