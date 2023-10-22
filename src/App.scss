@@ -1,8 +1,11 @@
-@import url('./styles/partials/_breakpoints.scss');
-@import url('./styles/partials/_fonts.scss');
-@import url('./styles/partials/_variables.scss');
+@use './styles/partials/mixins' as *;
+@use './styles/partials/fonts' as *;
 
-
+* {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: AvenirNext, Arial, Helvetica, sans-serif;
+}
 .App {
   text-align: center;
 }
