@@ -1,0 +1,98 @@
+//primary colors
+$brainFlix-black:#323232;
+$brainFlix-blue:#0095FF;
+$silver:#AFAFAF;
+$white:White;
+
+// secondary colors
+$brainFlix-darkblack:#000000;
+$brainFlix-darkblue:#0065AD;
+$mercury:#E1E1E1;
+$alabaster:#FAFAFA;
+
+// Define a breakpoint variable
+$tablet-breakpoint: 768px;
+$desktop-breakpoint: 1024px;
+
+@mixin tablet{
+    @media screen and (min-width:$tablet-breakpoint){
+        @content;
+    }
+}
+@mixin desktop{
+    @media screen and (min-width:$desktop-breakpoint){
+        @content;
+    }
+}
+
+//button styles
+@mixin button-styles(
+  $button-width: 100%,
+  $icon-height: 0.75rem,
+) {
+  height: 2.5rem;
+  width: $button-width;
+  color: $white;
+  padding: 0 2rem;
+  font-size: 0.625rem;
+  line-height: 1.25rem;
+  border-radius: 0.25rem;
+  background-color: $brainFlix-blue;
+
+  svg {
+    fill: $white;
+    height: $icon-height;
+  }
+
+  &:hover {
+    background-color: $brainFlix-darkblue;
+  }
+}
+
+//page headers
+@mixin page-header-styles(
+    $font-size: 1.5rem,
+    $line-height:2rem 
+) {
+    font-size: $font-size;
+    line-height: $line-height;
+    font-weight: 700;
+    color: $brainFlix-black;
+  }
+
+@mixin section-header-styles{
+    font-size: 0.75rem;
+    line-height: 1.25rem;
+    font-weight: 700;
+    color: $brainFlix-black;
+}
+
+@mixin sub-header-styles(
+    $font-size: 0.813rem,
+    $line-height: 1.125rem
+){
+    font-size: $font-size;
+    line-height: $line-height;
+    font-weight: 700;
+    color: $brainFlix-black;
+}
+
+@mixin body-text-styles(
+    $font-size: 0.813rem,
+    $line-height: 1.125rem
+){
+    font-size: $font-size;
+    line-height: $line-height;
+    font-weight: 400;
+    color: $brainFlix-black;
+}
+
+@mixin custom-paddings(
+    $padding-before-headlines: 1.5rem,
+    $padding-after-headlines: 1rem,
+    $padding-between-components: 1rem
+){
+    padding-top: $padding-before-headlines;
+    padding-bottom: $padding-after-headlines;
+    padding: $padding-between-components 0;
+}
