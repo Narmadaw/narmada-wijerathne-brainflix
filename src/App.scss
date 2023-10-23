@@ -3,11 +3,14 @@
 
 * {
   box-sizing: border-box;
+  font-family: "AvenirNext", Arial, Helvetica, sans-serif;
+}
+body{
   margin: 0;
-  font-family: AvenirNext, Arial, Helvetica, sans-serif;
 }
 .App {
   text-align: center;
+  
 }
 
 .App-logo {
@@ -42,5 +45,12 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@include desktop{
+  .container{
+    display: flex;
+    flex-direction: row;
   }
 }

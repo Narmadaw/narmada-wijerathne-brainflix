@@ -1,45 +1,30 @@
+@use './../../styles/partials/fonts' as *;
 @use'./../../styles/partials/mixins' as *;
 
-
 .video-player{
-    &__background{
-        background-color: $brainFlix-darkblack;
-    }
-
-    &__video{
-        width: 100%;
-        object-fit: fill;
-    }
+    background-color: $brainFlix-darkblack;
+    display: flex;
+    justify-content: center;
 }
+.background-video{
+    width: 100%;
+} 
 
 @include tablet{
-
     .video-player{
-        &__background{
-            height: 530px;
-        }
-    
-        &__video{
-            padding: 0 2rem;
-            width: 80%;
-            height: 530px;
-            object-fit: cover;
-            overflow: hidden;
-        }
+        padding: 0 2.5rem;
     }
+    .background-video{
+        width: 100%;
+    }     
 }
 
 @include desktop{
     .video-player{
-        &__background{
-            height: 530px;
-        }
-        
-        &__video{
-            padding: 0 3.5rem;
-            width: 70%;
-            height: 530px;
-            object-fit: cover;
-        }
+        padding: 0;
     }
+    .background-video{
+        height: 57vh;
+        width: 60%;
+    }  
 }

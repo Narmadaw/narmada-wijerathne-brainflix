@@ -1,0 +1,127 @@
+@use'./../../styles/partials/mixins' as *;
+
+.l-comments{
+    padding: 0 1rem;
+    &__title{
+        @include custom-paddings;
+        @include sub-header-styles;
+        text-align: left;
+    }
+}
+
+.comment-form{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    &__profile-image{
+        margin-top: 1.25rem;
+        margin-right: auto;
+        margin-left: auto;
+        width: 2.25rem;
+        height: 2.25rem;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: center;
+    }
+    &__input-section{
+        width: 80%;
+    }
+    &__input-label{
+        text-align: left;
+        margin: 0;
+        @include section-header-styles;
+    }
+    &__input{
+        @include form-fields;
+        height: 5rem;
+        width: 100%;
+        background-color: $alabaster;
+        padding-left: 1rem;
+    }
+    &__submit-button{
+        margin-top: 0.625rem;
+        width: 100%;
+        @include button-styles;
+        background-image: url("./../../assets/images/icons/add_comment.svg");
+        background-repeat: no-repeat;
+        background-position: 2vw;
+    }
+}
+
+.comment-list{
+    list-style: none;
+    padding: 0;
+}
+
+.comment-list-item{
+    border-bottom: 1px solid $silver;
+    display: flex;
+    flex-direction: row;
+    padding: 1rem 0;
+
+    &__img-placeholder{
+        border-radius: 50%;
+        height: 2.25rem;
+        width: 2.25rem;
+        background-color: $mercury;
+        margin-top: 10px;
+    }
+    &__comment-header{
+        width: 87%;
+        padding-left: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    &__name{
+        font-weight: 700;
+        margin: 0;
+    }
+
+    &__date{
+        color: $silver;
+        margin: 0;
+    }
+    &__comment-body{
+        padding-top: 0.625rem;
+        text-align: left;
+        width: 100%;
+        margin: 0;
+        @include body-text-styles;
+    }
+}
+
+@include tablet{
+    .l-comments{
+        padding: 0 2.5rem;
+    }
+    .comment-form{
+        display: flex;
+        &__input-section{
+            width: 100%;
+        }
+        &__submit-button{
+            width: 25%;
+            height: 3rem;
+            margin-top: 0;
+        }
+        &__input{
+            @include form-fields;
+            height: 3rem;
+            width: 75%;
+            background-color: $alabaster;
+        }
+    }
+
+    .comment-list{
+        list-style: none;
+        padding: 0;
+    }
+}
+
+@include desktop{
+    .l-comments{
+        padding: 0 5.625rem;
+    }
+}

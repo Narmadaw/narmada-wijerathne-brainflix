@@ -1,0 +1,119 @@
+@use './../../styles/partials/fonts' as *;
+@use'./../../styles/partials/mixins' as *;
+
+.video-container{
+    padding: 0 1rem;
+    &__title{
+        @include page-header-styles;
+        @include custom-paddings;
+        text-align: left;
+        border-bottom: 1px solid $mercury;
+    }
+    &__middle-card{
+        display: flex;
+        flex-wrap: wrap;
+        padding: 1.25rem 0;
+        border-bottom: 1px solid $mercury;
+    }
+    &__channel{
+        width: 50%;
+        order: 1;
+        text-align: left;
+        font-weight: 700;
+        margin: 0;
+        margin-bottom: 10px;
+    }
+    &__timestamp{
+        width: 50%;
+        order: 3;
+        text-align: left;
+        color: $silver;
+        margin: 0;
+    }
+    &__views{
+        width: 50%;
+        order: 2;
+        text-align: right;
+        color: $silver;
+        margin-bottom: 10px;
+    }
+    &__likes{
+        width: 50%;
+        order: 4;
+        text-align: right;
+        color: $silver;
+    }
+
+    &__description{
+        @include body-text-styles;
+        @include custom-paddings;
+        text-align: left;
+    }
+}
+
+@include tablet{
+    .video-container{
+        padding: 0 2.5rem;
+        &__title{
+            display: flex;
+            @include page-header-styles;
+            padding-top: 1rem;
+            
+            border: none;
+        }
+        &__middle-card{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+            padding-bottom: 1.25rem;
+            border-bottom: 1px solid $mercury;
+        }
+        &__channel{
+            width: auto;
+        }
+        &__timestamp{
+            width: auto;
+            order: 2;  
+        }
+        &__views{
+            width: auto;
+            
+        }
+        &__likes{
+            width: auto;
+        }
+    }
+}
+
+@include desktop{
+    .video-container{
+        
+        padding: 0 5.625rem;
+        &__title{
+            border-bottom: none;
+        }
+        &__middle-card{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+            padding-bottom: 1.25rem;
+            border-bottom: 1px solid $mercury;
+        }
+        &__channel{
+            width: auto;
+        }
+        &__timestamp{
+            width: auto;
+            order: 2;  
+        }
+        &__views{
+            width: auto;
+            
+        }
+        &__likes{
+            width: auto;
+        }
+    }
+}

@@ -2,7 +2,6 @@
 
 .l-video-list{
     padding: 0 1rem;
-    
 }
 
 .section-title{
@@ -21,7 +20,7 @@
     }
     &__video-card{
         width: 38%;
-        height: 70px;
+        height: 4.375rem;
         overflow: hidden;
         position: relative;
         border-radius: 4px;
@@ -30,7 +29,7 @@
    
     &__video{
         width: 100%;
-        height: 70px;
+        height: 4.375rem;
         object-fit: cover;
         object-position: center;
         position: absolute;
@@ -38,21 +37,75 @@
     }
     &__text-container{
         width: 62%;
-        height: 70px;
+        height: 4.375rem;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
         text-align: left;
         padding-left: 10px; 
     }
+
     &__title{
-        @include sub-header-styles(1rem);
-        // white-space: nowrap;
-        // overflow: hidden;
-        // text-overflow: ellipsis;
-    }
-    &__channel{
-        @include body-text-styles;
+        @include sub-header-styles;
+        margin: 0;
+       
     }
 
+    &__channel{
+        @include body-text-styles;
+        margin: 0;
+    }
+}
+
+
+@include tablet{
+    .l-video-list{
+        padding: 0 2.5rem;
+    }
+
+    .section-title{
+        text-align: left;
+        @include section-header-styles;
+        @include custom-paddings(2.25rem, 1.5rem, 1rem);
+    }
+
+    .video-list{
+        &__video-card{
+            width: 6.25rem;
+            height: 3.75rem;
+            overflow: hidden;
+            position: relative;
+            border-radius: 4px;
+            align-items: center;
+        }
+
+        &__video{
+            width: 100%;
+            height: 3.75rem;
+            object-fit: cover;
+            object-position: center;
+            position: absolute;
+            left: 0;
+        }
+    }
+}
+
+@include desktop{
+    .l-video-list{
+        border-left: 1px solid $silver;
+        padding: 0 1rem;
+        width: 35vw;
+    }
+
+    .video-list{
+        &__text-container{
+            width: 40%;
+            height: 3.75rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            text-align: left;
+            padding-left: 0.625rem; 
+        }
+    }
 }

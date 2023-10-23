@@ -73,7 +73,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    padding: auto;
+    padding: 0 80px;
   
     &__logo-container{
       order: 1;
@@ -94,7 +94,7 @@
     }
   
     &__search-button{
-      @include button-styles(20%);
+      @include button-styles(150px);
       order: 3;
       margin: auto 0;
     }
