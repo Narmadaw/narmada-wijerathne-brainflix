@@ -1,32 +1,30 @@
 import React from "react";
-import ProfileImage from "./../../assets/images/Mohan-muruge.jpg"
-import "./Comments.scss";
-import DateFomatter from "./../../data/utill.js"
 
-function Comments(props){
+import "./Comments.scss";
+import DateFomatter from "../utill.js"
+
+
+function Comments({commentsList}){
+    
+    
     return(
         <section className="l-comments">
-            <h1 className="l-comments__title" >3 Comments</h1>
-
-            <form id="comment-form" className="comment-form">
-                <div className="comment-form__img-placeholder">
-                    <img className="comment-form__profile-image" src={ProfileImage} alt="profile avatar" />
-                </div>
-                <div className="comment-form__input-section">
-                    <h4 className="comment-form__input-label">JOIN THE CONVERSATION</h4>
-                    <textarea className="comment-form__input" name="comment" placeholder="Add a new comment"></textarea>
-                    <button className="comment-form__submit-button" name="submit">COMMENT</button>
-                </div>
-            </form>
+            <h2 className="l-comments__title" >{commentsList?.length} comments</h2>
+           
+            
             
             <ul className="comment-list">
-                {props.selectedVideo.comments.map((comment, index) => {
+                {commentsList?.map((comment, index) => {
                     return <li className="comment-list-item" key={index}>
                         <div className="comment-list-item__img-placeholder"></div>
                         <div className="comment-list-item__comment-header">
                             <p className="comment-list-item__name">{comment.name}</p>
                             <p className="comment-list-item__date">{DateFomatter(comment.timestamp)}</p>
                             <p className="comment-list-item__comment-body">{comment.comment}</p>
+                            
+                            <button >Delete</button>
+                            
+                            
                         </div> 
                     </li>;
                     })}

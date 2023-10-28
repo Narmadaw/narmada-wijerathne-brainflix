@@ -1,31 +1,34 @@
+import { Link } from "react-router-dom";
 import './VideoList.scss';
 
-function VideoList(props){
+function VideoList({videoList, selectedVideo}){
+    
     return(
         <section className="l-video-list">
-            <h1 className="section-title">NEXT VIDEOS</h1>
+            <h2 className="section-title">NEXT VIDEOS</h2>
             <ul className="video-list">
-                {props.videoData
-                .filter((video) => video.id !== props.selectedVideo.id)
+
+                {videoList
+                .filter((video) => video.id !== selectedVideo.id)
                 .map((video) => {
                     return(
-                    <li
-                    onClick={() => {
-                        props.handleVideoSelection(video.id);
-                    }}
-                    key={video.id}
-                    className="video-list__item">
+                    <li key={video.id}className="video-list__item">
+                        
                         <div className="video-list__video-card">
-                            <img className="video-list__video" src={video.image} alt="video" />
+                        <Link to={`/${video.id}`}>
+                            <img className="video-list__video" src={video.image} alt="video" /> </Link>
                         </div>
+                        
                         <div className="video-list__text-container">
                             <p className="video-list__title">{video.title}</p>
                             <p className="video-list__channel">{video.channel}</p>
                         </div>
+                       
                     </li>
                     );
                 })
-                }
+                
+                } 
             </ul>
         </section>
     );

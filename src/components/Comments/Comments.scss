@@ -7,6 +7,10 @@
         @include sub-header-styles;
         text-align: left;
     }
+
+    @include desktop{
+        padding: 0 5.625rem;
+    }
 }
 
 .comment-form{
@@ -120,8 +124,4 @@
     }
 }
 
-@include desktop{
-    .l-comments{
-        padding: 0 5.625rem;
-    }
-}
+

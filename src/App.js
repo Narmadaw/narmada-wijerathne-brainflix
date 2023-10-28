@@ -1,39 +1,31 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.scss';
 import Navigation from './components/Navigation/Navigation';
-import VideoList from './components/VideoList/VideoList';
-import SelectedVideo from './components/SelectedVideo/SelectedVideo';
-import VideoDescription from './components/VideoDescription/VideoDescription';
-import Comments from './components/Comments/Comments';
-import VideoJsonData from "./data/video-details.json";
-import { useState } from 'react';
+import HomePage from './pages/HomePage/HomePage';
+import VideoUpload from './pages/VideoUploadPage/VideoUploadPage';
+
 
 
 function App() {
-  const [videoData, setVideoData] = useState(VideoJsonData);
-  const [selectedVideo, setSelectedVideo] = useState(VideoJsonData[0]);
-  
-
-  function handleVideoSelection(id){
-    const foundVideo = videoData.find((video) => video.id === id);
-    setSelectedVideo(foundVideo);
-  }
+ 
   return (
-    <div className="App">
-      <Navigation />
-      <SelectedVideo selectedVideo={selectedVideo} />
-      <div className="container">
-        <div className='container__left'>
-          <VideoDescription selectedVideo={selectedVideo}/> 
-          <Comments selectedVideo={selectedVideo}/>
-        </div>
+    <BrowserRouter>
 
-        <div className='container__right'>
-          <VideoList videoData={videoData}
-            selectedVideo={selectedVideo}
-            handleVideoSelection={handleVideoSelection}/>
-        </div>
-      </div>
+    <div>
+    <Navigation />
     </div>
+
+
+    {/* TODO:: ADD A ERROR PAGE FOR 404  */}
+
+    <Routes>
+    <Route path="/" element={<HomePage/>}/>
+    <Route path="/:id" element={<HomePage/>}/>
+    <Route path="/videoupload" element={<VideoUpload/>}/>
+
+    </Routes>
+    </BrowserRouter>
+
   );
 }
 
