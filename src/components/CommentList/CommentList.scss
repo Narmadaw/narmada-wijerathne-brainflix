@@ -1,0 +1,45 @@
+@use'./../../styles/partials/mixins' as *;
+
+.comment-list{
+    list-style: none;
+    padding: 0;
+}
+
+.comment-list-item{
+    border-bottom: 1px solid $silver;
+    display: flex;
+    flex-direction: row;
+    padding: 1rem 0;
+
+    &__img-placeholder{
+        border-radius: 50%;
+        height: 2.25rem;
+        width: 2.25rem;
+        background-color: $mercury;
+        margin-top: 10px;
+    }
+    &__comment-header{
+        width: 87%;
+        padding-left: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    &__name{
+        font-weight: 700;
+        margin: 0;
+    }
+
+    &__date{
+        color: $silver;
+        margin: 0;
+    }
+    &__comment-body{
+        padding-top: 0.625rem;
+        text-align: left;
+        width: 100%;
+        margin: 0;
+        @include body-text-styles;
+    }
+}

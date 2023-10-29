@@ -6,12 +6,13 @@ import VideoList from '../../components/VideoList/VideoList';
 import SelectedVideo from '../../components/SelectedVideo/SelectedVideo';
 import VideoDescription from '../../components/VideoDescription/VideoDescription';
 import Comments from '../../components/Comments/Comments';
-import CommentForm from '../../components/CommentForm/CommentForm';
+
 
 
 function HomePage() {
   const [selectedVideo, setSelectedVideo] = useState({});
   const [videoList, setVideoList] = useState([]);
+  const [commentsList, setCommentsList] = useState([]);
   const apiKey = "20e34fd8-3ad6-47e0-8ac4-2747c23ed021";
   const params = useParams();
   
@@ -28,9 +29,9 @@ function HomePage() {
         if(!params.id){
           const response = await axios.get(`https://project-2-api.herokuapp.com/videos/${defaultVideoId}?api_key=${apiKey}`);
           setSelectedVideo(response.data);
+          setCommentsList(response.data.comments);
         }
       }
-
       catch(error){
         alert("Error fetching video list:" ,error);
       }
@@ -47,17 +48,55 @@ function HomePage() {
       try {
         const response = await axios.get(`https://project-2-api.herokuapp.com/videos/${params.id}?api_key=${apiKey}`);
         setSelectedVideo(response.data);
-        console.log(response.data);
+        setCommentsList(response.data.comments);
+        
       } catch (error) {
         console.error('Error fetching selected video:', error);
       }
     };
+    
     if (params.id) {
       getSelectedVideo();
     } else {
       setSelectedVideo({});
     }
+
+    getSelectedVideo();
+
   }, [params.id]);
+
+   /**
+   * POST COMMENTS
+   */ 
+
+  const postComment = async (commentData) =>{
+    console.log(commentData);
+    try{
+      const response = await axios.post(`https://project-2-api.herokuapp.com/videos/${params.id}/comments?api_key=${apiKey}`, commentData);
+      /*add new comments to previous list*/
+      return setCommentsList([...commentsList, response.data]);
+      
+    }
+    catch(error){
+      alert("error posting a comment", error);
+    }
+  }
+
+  /**
+   * DELETE COMMENTS
+   */ 
+  const deleteComment = async (commentId) =>{
+    try{
+      const response = await axios.delete(`https://project-2-api.herokuapp.com/videos/${params.id}/comments/${commentId}?api_key=${apiKey}`);
+      const updatedCommentsList = commentsList.filter(comment => comment.id !== commentId);
+      setCommentsList(updatedCommentsList);
+      return response.data;
+    }
+    catch(error){
+      alert("error deleting comment", error);
+    }
+  }
+
   
   return (
 
@@ -69,7 +108,11 @@ function HomePage() {
       <div className="container">
         <div className='container__left'>
           <VideoDescription selectedVideo={selectedVideo}/>
-          <Comments commentsList={selectedVideo.comments}/>
+          <Comments 
+            commentsList={commentsList}
+            onFormSubmit={postComment} 
+            onClickDeleteButton={deleteComment}
+          />
         </div>
         <div className='container__right'>
           <VideoList videoList={videoList} selectedVideo={selectedVideo}/>

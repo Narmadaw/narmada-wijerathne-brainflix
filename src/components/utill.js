@@ -5,7 +5,7 @@ function DateFomatter(timestamp) {
       return "just now";
     }
     else if(secondsAgo < 60) {
-      return secondsAgo + " second" + (secondsAgo === 1 ? "" : "s") + " ago";
+      return "just now";
     } 
     else if(secondsAgo < 3600){
       const minutesAgo = Math.floor(secondsAgo / 60);

@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import './CommentForm.scss';
 import ProfileImage from "./../../assets/images/Mohan-muruge.jpg"
 
-const CommentForm = ({onCommentFormSubmit}) =>{
+const CommentForm = ({onFormSubmit}) =>{
     const [comment, setComment] = useState('');
 
-    const handleChangeComment = (event) => {
+    const handleChange = (event) => {
         setComment(event.target.value);
       };
 
@@ -17,7 +17,7 @@ const CommentForm = ({onCommentFormSubmit}) =>{
             comment: comment,
           };
 
-          onCommentFormSubmit(commentData);
+          onFormSubmit(commentData);
           console.log(commentData);
           setComment('');
     }
@@ -28,15 +28,11 @@ const CommentForm = ({onCommentFormSubmit}) =>{
                     <img className="comment-form__profile-image" src={ProfileImage} alt="profile avatar" />
                 </div>
                 <div className="comment-form__input-section">
-                    {/* <h4 className="comment-form__input-label">JOIN THE CONVERSATION</h4>
-                    <textarea className="comment-form__input" name="comment" placeholder="Add a new comment"></textarea>
-                    <button className="comment-form__submit-button" name="submit">COMMENT</button> */}
-
                     <label>
                         JOIN THE CONVERSATION
                         <input
                             value={comment}
-                            onChange={handleChangeComment}
+                            onChange={handleChange}
                             type='text'
                             name='comment'
                             className='comment-form__input'
@@ -48,8 +44,6 @@ const CommentForm = ({onCommentFormSubmit}) =>{
                             className="comment-form__submit-button" 
                             name="submit" 
                             type='submit'
-                            
-                            
                             > SUBMIT </button>
                     </label>
                 </div>
