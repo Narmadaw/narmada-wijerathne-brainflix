@@ -1,4 +1,6 @@
 import DateFomatter from "../utill.js"
+import DeleteIcon from './../../assets/images/icons/icon-delete.svg';
+import "./CommentList.scss";
 
 const CommentList = ({commentData, onClickDelete}) =>{
     // const handleOnclick = ()=>{
@@ -13,7 +15,11 @@ const CommentList = ({commentData, onClickDelete}) =>{
                         <p className="comment-list-item__name">{commentData.name}</p>
                         <p className="comment-list-item__date">{DateFomatter(commentData.timestamp)}</p>
                         <p className="comment-list-item__comment-body">{commentData.comment}</p>
-                        <button className="comment-list-item__delete-button" onClick={()=>onClickDelete(commentData.id)}>Delete</button>
+                        <div className="comment-list-item__delete-section">
+                        <img className="comment-list-item__delete-icon" src={DeleteIcon}  alt="delete icon" onClick={()=>onClickDelete(commentData.id)} />
+                        </div>
+                        
+                        
                     </div> 
                 </div>   
             </div>

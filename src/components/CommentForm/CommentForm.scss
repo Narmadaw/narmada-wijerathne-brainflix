@@ -1,0 +1,49 @@
+@use'./../../styles/partials/mixins' as *;
+
+
+
+.comment-form{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    &__profile-image{
+        margin-top: 1.25rem;
+        margin-right: auto;
+        margin-left: auto;
+        width: 2.25rem;
+        height: 2.25rem;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: center;
+    }
+    &__input-section{
+        width: 80%;
+    }
+    &__input-label{
+        text-align: left;
+        margin: 0;
+        @include section-header-styles;
+    }
+    &__input-textarea{
+        border-radius: 4px;
+        resize: none;
+        width: 100%;
+        background-color: $alabaster;
+        border-color: $silver;
+        padding: 1rem;
+        &::placeholder{
+            color: $brainFlix-darkblack;
+        }
+        &:active{
+            border: 0.125rem solid $brainFlix-blue;
+        }
+    }
+    &__submit-button{
+        margin-top: 0.625rem;
+        width: 100%;
+        @include button-styles;
+        background-image: url("./../../assets/images/icons/add_comment.svg");
+        background-repeat: no-repeat;
+        background-position: 2vw;
+    }
+}

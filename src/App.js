@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.scss';
-import Navigation from './components/Navigation/Navigation';
+import Header from './components/Header/Header';
 import HomePage from './pages/HomePage/HomePage';
 import VideoUpload from './pages/VideoUploadPage/VideoUploadPage';
 
@@ -12,7 +12,7 @@ function App() {
     <BrowserRouter>
 
     <div>
-    <Navigation />
+    <Header />
     </div>
 
 

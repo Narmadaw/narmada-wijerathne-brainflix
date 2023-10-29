@@ -14,6 +14,7 @@ function HomePage() {
   const [videoList, setVideoList] = useState([]);
   const [commentsList, setCommentsList] = useState([]);
   const apiKey = "20e34fd8-3ad6-47e0-8ac4-2747c23ed021";
+  const defaultVideoId = "84e96018-4022-434e-80bf-000ce4cd12b8";
   const params = useParams();
   
   /*
@@ -23,14 +24,7 @@ function HomePage() {
     const getVideoList = async () =>{
       try{
         const response = await axios.get(`https://project-2-api.herokuapp.com/videos?api_key=${apiKey}`);
-        setVideoList(response.data);
-        let defaultVideoId = response.data[0].id;
-    
-        if(!params.id){
-          const response = await axios.get(`https://project-2-api.herokuapp.com/videos/${defaultVideoId}?api_key=${apiKey}`);
-          setSelectedVideo(response.data);
-          setCommentsList(response.data.comments);
-        }
+        setVideoList(response.data); 
       }
       catch(error){
         alert("Error fetching video list:" ,error);
@@ -39,31 +33,35 @@ function HomePage() {
     getVideoList();
   }, []);
 
-
   /*
    * GET SELECTED VIDEO
    */ 
   useEffect(() => {
     const getSelectedVideo = async () => {
-      try {
-        const response = await axios.get(`https://project-2-api.herokuapp.com/videos/${params.id}?api_key=${apiKey}`);
-        setSelectedVideo(response.data);
-        setCommentsList(response.data.comments);
-        
-      } catch (error) {
-        console.error('Error fetching selected video:', error);
+      if(!params.id){
+        try {
+          const response = await axios.get(`https://project-2-api.herokuapp.com/videos/${defaultVideoId}?api_key=${apiKey}`);
+          setSelectedVideo(response.data);
+          setCommentsList(response.data.comments);
+
+        } catch (error) {
+          console.error('Error fetching selected video:', error);
+        }
+      }
+      else{
+        try {
+          const response = await axios.get(`https://project-2-api.herokuapp.com/videos/${params.id}?api_key=${apiKey}`);
+          setSelectedVideo(response.data);
+          setCommentsList(response.data.comments);
+          
+        } catch (error) {
+          console.error('Error fetching selected video:', error);
+        }
       }
     };
-    
-    if (params.id) {
-      getSelectedVideo();
-    } else {
-      setSelectedVideo({});
-    }
-
     getSelectedVideo();
 
-  }, [params.id]);
+  },[params.id]);
 
    /**
    * POST COMMENTS
@@ -71,14 +69,24 @@ function HomePage() {
 
   const postComment = async (commentData) =>{
     console.log(commentData);
-    try{
-      const response = await axios.post(`https://project-2-api.herokuapp.com/videos/${params.id}/comments?api_key=${apiKey}`, commentData);
-      /*add new comments to previous list*/
-      return setCommentsList([...commentsList, response.data]);
-      
+    if(!params.id){
+      try{
+        const response = await axios.post(`https://project-2-api.herokuapp.com/videos/${defaultVideoId}/comments?api_key=${apiKey}`, commentData);
+        return setCommentsList([...commentsList, response.data]);
+      }
+      catch(error){
+        alert("error posting a comment", error);
+      }
+
     }
-    catch(error){
-      alert("error posting a comment", error);
+    else{
+      try{
+        const response = await axios.post(`https://project-2-api.herokuapp.com/videos/${params.id}/comments?api_key=${apiKey}`, commentData);
+        return setCommentsList([...commentsList, response.data]);
+      }
+      catch(error){
+        alert("error posting a comment", error);
+      }
     }
   }
 
@@ -86,20 +94,33 @@ function HomePage() {
    * DELETE COMMENTS
    */ 
   const deleteComment = async (commentId) =>{
-    try{
-      const response = await axios.delete(`https://project-2-api.herokuapp.com/videos/${params.id}/comments/${commentId}?api_key=${apiKey}`);
-      const updatedCommentsList = commentsList.filter(comment => comment.id !== commentId);
-      setCommentsList(updatedCommentsList);
-      return response.data;
+    if(!params.id){
+      try{
+        const response = await axios.delete(`https://project-2-api.herokuapp.com/videos/${defaultVideoId}/comments/${commentId}?api_key=${apiKey}`);
+        const updatedCommentsList = commentsList.filter(comment => comment.id !== commentId);
+        setCommentsList(updatedCommentsList);
+        return response.data;
+      }
+      catch(error){
+        alert("error deleting comment", error);
+      }
     }
-    catch(error){
-      alert("error deleting comment", error);
+
+    else{
+      try{
+        const response = await axios.delete(`https://project-2-api.herokuapp.com/videos/${params.id}/comments/${commentId}?api_key=${apiKey}`);
+        const updatedCommentsList = commentsList.filter(comment => comment.id !== commentId);
+        setCommentsList(updatedCommentsList);
+        return response.data;
+      }
+      catch(error){
+        alert("error deleting comment", error);
+      }
     }
   }
 
   
   return (
-
     <div className="Home">
       <SelectedVideo 
         image={selectedVideo.image}

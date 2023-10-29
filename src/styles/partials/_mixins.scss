@@ -33,7 +33,7 @@ $desktop-breakpoint: 1024px;
   width: $button-width;
   color: $white;
   padding: 0 2rem;
-  font-size: 0.625rem;
+  
   line-height: 1.25rem;
   font-weight: 700;
   border-radius: 0.25rem;
@@ -49,14 +49,14 @@ $desktop-breakpoint: 1024px;
 
 //input fields
 @mixin form-fields(
-    $form-field-height: 2.25rem,
-    $form-field-width: 80%,
+    $form-field-width: 100%,
 ){
-    height: $form-field-height;
+    height: 2.25rem;
     width: $form-field-width;
     padding-left: 3rem;
     border-radius: 0.25rem;
     border: 0.063rem solid $mercury;
+    background-color: $alabaster;
 
     &:active{
         border: 0.125rem solid $brainFlix-blue;
@@ -65,6 +65,19 @@ $desktop-breakpoint: 1024px;
     &::placeholder{
         color: $brainFlix-black;
       }
+}
+
+@mixin form-field-textarea{
+    background-color: $alabaster;
+    border-radius: 4px;
+    border: 1px solid $silver;
+    resize: none;
+    width: 100%;
+    padding: 1rem;
+
+    &::placeholder{
+        color: $brainFlix-darkblack;
+    }
 }
 
 //profile image

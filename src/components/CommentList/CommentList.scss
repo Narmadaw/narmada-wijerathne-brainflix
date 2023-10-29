@@ -42,4 +42,13 @@
         margin: 0;
         @include body-text-styles;
     }
+
+    &__delete-section{
+        height: 36px;
+        overflow: hidden;
+
+    }
+    &__delete-icon{
+        
+    }
 }

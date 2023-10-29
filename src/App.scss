@@ -48,9 +48,4 @@ body{
   }
 }
 
-@include desktop{
-  .container{
-    display: flex;
-    flex-direction: row;
-  }
-}
+

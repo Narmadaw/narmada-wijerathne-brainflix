@@ -28,24 +28,27 @@ const CommentForm = ({onFormSubmit}) =>{
                     <img className="comment-form__profile-image" src={ProfileImage} alt="profile avatar" />
                 </div>
                 <div className="comment-form__input-section">
-                    <label>
+                    <label className='comment-form__label'>
                         JOIN THE CONVERSATION
-                        <input
+                        <textarea
                             value={comment}
                             onChange={handleChange}
                             type='text'
                             name='comment'
-                            className='comment-form__input'
+                            rows="5"
+                            className='comment-form__input-textarea'
+                            placeholder='Add a new comment'
+                            
                             // className={`comment-form__input ${
                             //     isCommentValid()?"":"comment-form__input--invalid"
                             // }`}
-                        />
-                        <button 
+                        ></textarea>
+                    </label>
+                    <button 
                             className="comment-form__submit-button" 
                             name="submit" 
                             type='submit'
                             > SUBMIT </button>
-                    </label>
                 </div>
             </form>
         </>
