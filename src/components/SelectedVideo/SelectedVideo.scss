@@ -11,19 +11,18 @@
     }
 
     @include desktop{
-        padding: 0 auto;
-        max-width: 1280px;
+        width: 100%; 
+        
     }
 }
 .background-video{
     width: 100%;
+    @include tablet{
+        width: 100%;  
+    }
 
     @include desktop{
         height: 57vh;
-        width: 60%;  
-    }
-
-    @include tablet{
         width: 100%;  
     }
 } 
