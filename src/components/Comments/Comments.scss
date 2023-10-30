@@ -1,47 +1,26 @@
 @use'./../../styles/partials/mixins' as *;
+@use './../../styles/partials/fonts' as *;
 
 .l-comments{
     padding: 0 1rem;
+    
+    @include tablet{
+        padding: 0 2.5rem;
+    }
+    @include desktop{
+        padding: 0 0 0 6.5rem;
+    }
+
     &__title{
         @include custom-paddings;
         @include sub-header-styles;
         text-align: left;
-    }
-
-    @include desktop{
-        padding: 0 5.625rem;
+        @include desktop{
+            margin: 0;
+            padding: 0;
+        }
     }
 }
 
-
-
-
-
-@include tablet{
-    .l-comments{
-        padding: 0 2.5rem;
-    }
-    .comment-form{
-        display: flex;
-        &__input-section{
-            width: 100%;
-        }
-        &__submit-button{
-            width: 25%;
-            height: 3rem;
-            margin-top: 0;
-        }
-        &__input{
-            @include form-fields;
-            
-            background-color: $alabaster;
-        }
-    }
-
-    .comment-list{
-        list-style: none;
-        padding: 0;
-    }
-}
 
 

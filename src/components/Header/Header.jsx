@@ -3,9 +3,7 @@ import Logo from "./../../assets/images/logo/BrainFlix-logo.svg";
 import ProfileImage from "./../../assets/images/Mohan-muruge.jpg";
 import "./Header.scss";
 
-
-
-function Header(){
+const Header = () =>{
     return(
         <div className="header">
             <nav className="header__container">

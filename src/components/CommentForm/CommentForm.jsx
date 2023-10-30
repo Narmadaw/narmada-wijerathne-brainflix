@@ -18,18 +18,18 @@ const CommentForm = ({onFormSubmit}) =>{
           };
 
           onFormSubmit(commentData);
-          console.log(commentData);
           setComment('');
     }
     return(
         <>
-        <form onSubmit={handleSubmit} className="comment-form">
-                <div className="comment-form__img-placeholder">
-                    <img className="comment-form__profile-image" src={ProfileImage} alt="profile avatar" />
-                </div>
-                <div className="comment-form__input-section">
-                    <label className='comment-form__label'>
-                        JOIN THE CONVERSATION
+        <form onSubmit={handleSubmit} >
+            <div className="comment-form">
+                <div className="comment-form__container">
+                    <div className="comment-form__img-placeholder">
+                        <img className="comment-form__profile-image" src={ProfileImage} alt="profile avatar" />
+                    </div>
+                    <div className="comment-form__input-section">
+                        <h4 className='comment-form__label'>JOIN THE CONVERSATION</h4>
                         <textarea
                             value={comment}
                             onChange={handleChange}
@@ -38,19 +38,19 @@ const CommentForm = ({onFormSubmit}) =>{
                             rows="5"
                             className='comment-form__input-textarea'
                             placeholder='Add a new comment'
-                            
-                            // className={`comment-form__input ${
-                            //     isCommentValid()?"":"comment-form__input--invalid"
-                            // }`}
                         ></textarea>
-                    </label>
-                    <button 
-                            className="comment-form__submit-button" 
-                            name="submit" 
-                            type='submit'
-                            > SUBMIT </button>
+                    </div>
                 </div>
-            </form>
+                <div className='comment-form__button-pannel' >
+                    <button 
+                        className="comment-form__submit-button" 
+                        name="submit" 
+                        type='submit'
+                        > COMMENT 
+                    </button>
+                </div>        
+            </div>
+        </form>
         </>
     );
 }

@@ -3,17 +3,45 @@
 
 .video-container{
     padding: 0 1rem;
+    @include tablet{
+        padding-left: 2.5rem;
+    }
+    @include desktop{
+        padding-left: 6.5rem;
+    }
+
     &__title{
         @include page-header-styles;
         @include custom-paddings;
         text-align: left;
         border-bottom: 1px solid $mercury;
+        @include tablet{
+            border-bottom: none;
+            margin: 0;
+        }
+        
+        @include desktop{
+            border-bottom: none;
+            margin: 0;
+        }
     }
     &__middle-card{
         display: flex;
         flex-wrap: wrap;
         padding: 1.25rem 0;
         border-bottom: 1px solid $mercury;
+        @include tablet{
+            padding: 0;
+        }
+        @include desktop{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0;
+            padding-right: 1rem;
+            border-bottom: 1px solid $mercury;
+        }
     }
     &__channel{
         width: 50%;
@@ -22,6 +50,9 @@
         font-weight: 700;
         margin: 0;
         margin-bottom: 10px;
+        @include desktop{
+            width: auto;
+        }
     }
     &__timestamp{
         width: 50%;
@@ -29,6 +60,10 @@
         text-align: left;
         color: $silver;
         margin: 0;
+        @include desktop{
+            width: auto;
+            order: 2; 
+        }
     }
     &__views{
         width: 50%;
@@ -36,84 +71,29 @@
         text-align: right;
         color: $silver;
         margin-bottom: 10px;
+        @include desktop{
+            width: auto;
+        }
     }
     &__likes{
         width: 50%;
         order: 4;
         text-align: right;
         color: $silver;
+        @include desktop{
+            width: auto;
+        }
     }
 
     &__description{
         @include body-text-styles;
         @include custom-paddings;
         text-align: left;
-    }
-}
-
-@include tablet{
-    .video-container{
-        padding: 0 2.5rem;
-        &__title{
-            display: flex;
-            @include page-header-styles;
-            padding-top: 1rem;
-            
-            border: none;
+        @include tablet{
+            margin: 0;
         }
-        &__middle-card{
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            width: 100%;
-            padding-bottom: 1.25rem;
-            border-bottom: 1px solid $mercury;
-        }
-        &__channel{
-            width: auto;
-        }
-        &__timestamp{
-            width: auto;
-            order: 2;  
-        }
-        &__views{
-            width: auto;
-            
-        }
-        &__likes{
-            width: auto;
-        }
-    }
-}
-
-@include desktop{
-    .video-container{
-        
-        padding: 0 5.625rem;
-        &__title{
-            border-bottom: none;
-        }
-        &__middle-card{
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            width: 100%;
-            padding-bottom: 1.25rem;
-            border-bottom: 1px solid $mercury;
-        }
-        &__channel{
-            width: auto;
-        }
-        &__timestamp{
-            width: auto;
-            order: 2;  
-        }
-        &__views{
-            width: auto;
-            
-        }
-        &__likes{
-            width: auto;
+        @include desktop{
+            padding-right: 1rem;
         }
     }
 }

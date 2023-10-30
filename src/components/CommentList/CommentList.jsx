@@ -3,9 +3,7 @@ import DeleteIcon from './../../assets/images/icons/icon-delete.svg';
 import "./CommentList.scss";
 
 const CommentList = ({commentData, onClickDelete}) =>{
-    // const handleOnclick = ()=>{
 
-    // }
     return(
         <>
             <div className="comment-list">
@@ -18,8 +16,6 @@ const CommentList = ({commentData, onClickDelete}) =>{
                         <div className="comment-list-item__delete-section">
                         <img className="comment-list-item__delete-icon" src={DeleteIcon}  alt="delete icon" onClick={()=>onClickDelete(commentData.id)} />
                         </div>
-                        
-                        
                     </div> 
                 </div>   
             </div>

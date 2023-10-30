@@ -1,0 +1,19 @@
+@use'./../../styles/partials/mixins' as *;
+@use './../../styles/partials/fonts' as *;
+
+.container{
+    display: flex;
+    flex-direction: column;
+
+    @include desktop{
+        flex-direction: row;
+        &__left-pannel{
+            width: 68%;
+            border-right: 1px solid $silver;
+        }
+        &__right-pannel{
+            width: 32%;
+            border: none;
+        }
+    }
+}

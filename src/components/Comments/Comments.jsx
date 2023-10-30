@@ -3,12 +3,9 @@ import CommentList from "../CommentList/CommentList";
 import "./Comments.scss";
 
 
-
-function Comments({commentsList, onFormSubmit, onClickDeleteButton}){
-    
-    
+const Comments = ({commentsList, onFormSubmit, onClickDeleteButton}) =>{
     return(
-        <section className="l-comments">
+        <div className="l-comments">
             <h2 className="l-comments__title" >{commentsList?.length} comments</h2>
             <CommentForm 
                 onFormSubmit={onFormSubmit} />
@@ -20,11 +17,11 @@ function Comments({commentsList, onFormSubmit, onClickDeleteButton}){
                     <CommentList
                         key={index}
                         commentData={comment}
-                        onClickDelete={onClickDeleteButton} />
+                        onClickDelete={onClickDeleteButton} 
+                    />
                 )
             })}
-        </section>
+        </div>
     );
 }
-
 export default Comments;

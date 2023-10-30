@@ -3,11 +3,10 @@ import ViewsIcon from "./../../assets/images/icons/views.svg";
 import LikesIcon from "./../../assets/images/icons/likes.svg";
 import DateFomatter from "../utill.js";
 
-function VideoDescription({selectedVideo}){
+const VideoDescription = ({selectedVideo}) =>{
     return(
         <div className="video-container">
                 <h1 className="video-container__title">{selectedVideo.title}</h1>
-
                 <div className="video-container__middle-card">
                 <p className="video-container__channel">by {selectedVideo.channel}</p>
                 <p className="video-container__timestamp">{DateFomatter(selectedVideo.timestamp)}</p>
@@ -20,12 +19,9 @@ function VideoDescription({selectedVideo}){
                     <img src={LikesIcon} alt="likes icon" />
                     {selectedVideo.likes}
                 </div>
-
                 </div>
                 <p className="video-container__description">{selectedVideo.description}</p>
             </div>
     );
-
 }
-
 export default VideoDescription;

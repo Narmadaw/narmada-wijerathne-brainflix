@@ -1,15 +1,15 @@
 @use'./../../styles/partials/mixins' as *;
-
+@use './../../styles/partials/fonts' as *;
 .comment-list{
-    list-style: none;
-    padding: 0;
+    width: 100%;
 }
 
 .comment-list-item{
     border-bottom: 1px solid $silver;
     display: flex;
     flex-direction: row;
-    padding: 1rem 0;
+    padding: 1rem 0 0.5rem 0;
+    justify-content: space-around;
 
     &__img-placeholder{
         border-radius: 50%;
@@ -17,6 +17,9 @@
         width: 2.25rem;
         background-color: $mercury;
         margin-top: 10px;
+        @include desktop{
+            padding-left: 1rem;;
+        }
     }
     &__comment-header{
         width: 87%;
@@ -25,8 +28,13 @@
         flex-wrap: wrap;
         flex-direction: row;
         justify-content: space-between;
+        @include desktop{
+            margin-left: 3rem;
+            padding: 0;
+        }
     }
     &__name{
+        @include body-text-styles;
         font-weight: 700;
         margin: 0;
     }
@@ -44,11 +52,7 @@
     }
 
     &__delete-section{
-        height: 36px;
+        margin-top: 0.5rem;
         overflow: hidden;
-
-    }
-    &__delete-icon{
-        
     }
 }

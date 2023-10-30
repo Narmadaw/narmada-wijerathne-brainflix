@@ -1,18 +1,15 @@
 import "./SelectedVideo.scss";
 
 
-function SelectedVideo({image, video}){
-    
-    
+const SelectedVideo = ({image, video}) =>{
     return(
         <div className="video-player">
-            <div className="wrapper">
-            <video className="background-video" poster={image} controls>
-                <source src= {`${video}?api_key=test`} type="video/mp4"/>
+            <div className="video-player__wrapper">
+            <video className="video-player__background-image" poster={image} controls>
+                <source className="video-player__background-video" src= {`${video}?api_key=test`} type="video/mp4"/>
             </video>
             </div>  
         </div>
     );
 }
-
 export default SelectedVideo;

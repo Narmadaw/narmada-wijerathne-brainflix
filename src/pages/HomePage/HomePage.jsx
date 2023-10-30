@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Link, useParams } from "react-router-dom";
 import axios from 'axios';
-
 import VideoList from '../../components/VideoList/VideoList';
 import SelectedVideo from '../../components/SelectedVideo/SelectedVideo';
 import VideoDescription from '../../components/VideoDescription/VideoDescription';
 import Comments from '../../components/Comments/Comments';
+import "./HomePage.scss";
 
 
 
@@ -121,13 +121,14 @@ function HomePage() {
 
   
   return (
-    <div className="Home">
+    <>
+    <div className="home-page">
       <SelectedVideo 
         image={selectedVideo.image}
         video={selectedVideo.video} />
-    
+    </div>
       <div className="container">
-        <div className='container__left'>
+        <div className='container__left-pannel'>
           <VideoDescription selectedVideo={selectedVideo}/>
           <Comments 
             commentsList={commentsList}
@@ -135,11 +136,14 @@ function HomePage() {
             onClickDeleteButton={deleteComment}
           />
         </div>
-        <div className='container__right'>
+        <div className='container__right-pannel'>
           <VideoList videoList={videoList} selectedVideo={selectedVideo}/>
         </div>
       </div>
-    </div>
+    
+    
+    </>
+    
   );
 }
     

@@ -3,18 +3,14 @@ import uploadImage from '../../assets/images/Upload-video-preview.jpg';
 import "./VideoUploadPage.scss";
 
 
-
-
 function VideoUploadPage(){
     const navigate  = useNavigate ();
-
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         setTimeout(()=> {
             alert("Video Uploaded!");
             navigate('/');
-        },2000) 
-
+        },1000) 
       };
 
     return (
@@ -35,9 +31,7 @@ function VideoUploadPage(){
                             <h4 className='upload__label upload__label--textarea'>ADD A VIDEO DESCRIPTION</h4>
                             <textarea className="upload__textarea" rows="7" name="text" placeholder="Add a description to your video"></textarea>
                     </div>
-
                     </div>
-                   
                     <div className="upload__button-panel">
                             <button className="upload__submit">PUBLISH</button>
                             <Link to="/"><button className="upload__link">CANCEL</button></Link>
@@ -47,7 +41,5 @@ function VideoUploadPage(){
         </section>
         </>
     );
-
 }
-
 export default VideoUploadPage;
