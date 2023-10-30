@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from 'axios';
 import VideoList from '../../components/VideoList/VideoList';
 import SelectedVideo from '../../components/SelectedVideo/SelectedVideo';
@@ -7,9 +7,7 @@ import VideoDescription from '../../components/VideoDescription/VideoDescription
 import Comments from '../../components/Comments/Comments';
 import "./HomePage.scss";
 
-
-
-function HomePage() {
+const HomePage = () => {
   const [selectedVideo, setSelectedVideo] = useState({});
   const [videoList, setVideoList] = useState([]);
   const [commentsList, setCommentsList] = useState([]);
@@ -118,8 +116,6 @@ function HomePage() {
       }
     }
   }
-
-  
   return (
     <>
     <div className="home-page">
@@ -140,11 +136,7 @@ function HomePage() {
           <VideoList videoList={videoList} selectedVideo={selectedVideo}/>
         </div>
       </div>
-    
-    
     </>
-    
   );
 }
-    
 export default HomePage;

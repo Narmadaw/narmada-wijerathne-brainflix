@@ -2,8 +2,7 @@ import {Link, useNavigate } from 'react-router-dom'
 import uploadImage from '../../assets/images/Upload-video-preview.jpg';
 import "./VideoUploadPage.scss";
 
-
-function VideoUploadPage(){
+const VideoUploadPage = () =>{
     const navigate  = useNavigate ();
     const handleFormSubmit = async (event) => {
         event.preventDefault();
