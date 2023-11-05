@@ -3,7 +3,7 @@ import CommentList from "../CommentList/CommentList";
 import "./Comments.scss";
 
 
-const Comments = ({commentsList, onFormSubmit, onClickDeleteButton}) =>{
+const Comments = ({commentsList, onFormSubmit, onClickDeleteButton, onCommentLike}) =>{
     return(
         <div className="l-comments">
             <h2 className="l-comments__title" >{commentsList?.length} comments</h2>
@@ -18,6 +18,9 @@ const Comments = ({commentsList, onFormSubmit, onClickDeleteButton}) =>{
                         key={index}
                         commentData={comment}
                         onClickDelete={onClickDeleteButton} 
+                        onClickLike={onCommentLike}
+                       
+
                     />
                 )
             })}
