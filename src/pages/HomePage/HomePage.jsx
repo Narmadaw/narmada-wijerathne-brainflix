@@ -12,7 +12,7 @@ const HomePage = () => {
   const [videoList, setVideoList] = useState([]);
   const [commentsList, setCommentsList] = useState([]);
   const [likeCount, setLikeCount] = useState(0);
-  const [defaultVideoId, setdefaultVideoId] = ([]);
+  const [defaultVideoId, setdefaultVideoId] = useState('');
 
   const apiURL = process.env.REACT_APP_API_URL;
   const params = useParams();
@@ -25,10 +25,7 @@ const HomePage = () => {
       try{
         const response = await axios.get(`${apiURL}/videos`);
         setVideoList(response.data); 
-        console.log(response.data);
         setdefaultVideoId(response.data[0].id);
-        console.log(response.data[0].id);
-
       }
       catch(error){
         alert("Error fetching video list:" ,error);
@@ -42,6 +39,7 @@ const HomePage = () => {
    */ 
   useEffect(() => {
     const getSelectedVideo = async (videoId) => {
+      console.log(videoId);
       try {
         const response = await axios.get(`${apiURL}/videos/${videoId}`);
         setSelectedVideo(response.data);
@@ -55,7 +53,7 @@ const HomePage = () => {
     } else {
       getSelectedVideo(params.id);
     }
-  }, [params.id]);
+  }, [defaultVideoId, params.id]);
 
    /**
    * POST COMMENTS
