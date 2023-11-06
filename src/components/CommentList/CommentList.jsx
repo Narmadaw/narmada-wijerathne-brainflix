@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
 import DateFomatter from "../utill.js"
 import DeleteIcon from './../../assets/images/icons/icon-delete.svg';
 import LikeIcon from './../../assets/images/icons/icon-like.svg';
 import "./CommentList.scss";
 
-const CommentList = ({commentData, onClickDelete,onClickLike}) =>{
+const CommentList = ({commentData, onClickIcon}) =>{
     return(
         <>
             <div className="comment-list">
@@ -15,16 +14,17 @@ const CommentList = ({commentData, onClickDelete,onClickLike}) =>{
                         <p className="comment-list-item__date">{DateFomatter(commentData.timestamp)}</p>
                         <p className="comment-list-item__comment-body">{commentData.comment}</p>
                         <div className="comment-list-item__delete-section">
-                        <img className="comment-list-item__delete-icon" src={DeleteIcon}  alt="delete icon" onClick={()=>onClickDelete(commentData.id)} />
-                        <img className="comment-list-item__like-icon" src={LikeIcon}  alt="like icon"  /> <p>Likes  {onClickLike} </p>
-                        {/* <img className="comment-list-item__like-icon" src={LikeIcon}  alt="like icon" onClick={()=>onClickLike(commentData.id)} /> <p>Likes  </p> */}
+                            <div className="comment-list-item__icon-pannel">
+                                <img className="comment-list-item__like-icon" src={LikeIcon}  alt="like icon" onClick={()=> onClickIcon(commentData.id, 'like')} /> 
+                                <p className="comment-list-item__like-icon-count">{commentData.likes} </p>
+                            </div>
+                            <img className="comment-list-item__delete-icon" src={DeleteIcon}  alt="delete icon" onClick={()=> onClickIcon(commentData.id, 'delete')} />
                         </div>
                     </div> 
                 </div>   
             </div>
         </>
     );
-
 }
 
 export default CommentList;

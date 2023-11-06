@@ -30,8 +30,12 @@
     }
 
     &__item{
-        display: flex;
         margin-bottom: 1rem;
+    }
+    &__link{
+        display: flex;
+        flex-direction: row;
+        text-decoration: none;
     }
     &__video-card{
         width: 38%;
@@ -66,6 +70,10 @@
         justify-content: space-around;
         text-align: left;
         padding-left: 10px; 
+        @include tablet{
+            width: 62%;
+
+        }
         @include desktop{
             width: 40%;
             height: 3.75rem;

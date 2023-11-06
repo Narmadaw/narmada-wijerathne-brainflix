@@ -12,18 +12,17 @@ const VideoList = ({videoList, selectedVideo}) =>{
                 .map((video) => {
                     return(
                     <li key={video.id}className="video-list__item">
+                        <Link className="video-list__link" to={`/${video.id}`}>
                         <div className="video-list__video-card">
-                        <Link to={`/${video.id}`}>
                             <img 
                                 className="video-list__video" 
-                                //src= {`${process.env.REACT_APP_API_URL}/${video.image}}
                                 src={`${process.env.REACT_APP_API_URL}/${video.image}`}
-                                alt="video" /> </Link>
+                                alt="video" /> 
                         </div>
                         <div className="video-list__text-container">
                             <p className="video-list__title">{video.title}</p>
                             <p className="video-list__channel">{video.channel}</p>
-                        </div>                     
+                        </div>   </Link>                  
                     </li>
                     );
                 })              

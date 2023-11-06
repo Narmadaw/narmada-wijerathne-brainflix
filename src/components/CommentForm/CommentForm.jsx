@@ -13,10 +13,9 @@ const CommentForm = ({onFormSubmit}) =>{
         event.preventDefault();
 
         const commentData = {
-            name:"Narmada",
+            name:"Narmada Wijerathne",
             comment: comment,
           };
-
           onFormSubmit(commentData);
           setComment('');
     }

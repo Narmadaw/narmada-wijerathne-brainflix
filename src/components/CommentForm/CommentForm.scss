@@ -73,16 +73,32 @@
         background-color: $alabaster;
         border-color: $silver;
         overflow: hidden;
+        padding: 0.5rem 0 0 1rem;
+        
         &::placeholder{
             color: $brainFlix-darkblack;
-            padding: 0.5rem 0 0 1rem;
+            padding: 0;
         }
         &:active{
+            border: 0.125rem solid $brainFlix-blue;
+        }
+        &__:focus{
             border: 0.125rem solid $brainFlix-blue;
         }
 
         @include desktop{
             height: 36px;
+            padding: 0.5rem 0 0 2rem;
+            &::placeholder{
+                color: $brainFlix-darkblack;
+                padding: 0;
+            }
+            &:active{
+                border: 0.125rem solid $brainFlix-blue;
+            }
+            &__:focus{
+                border: 0.125rem solid $brainFlix-blue;
+            }
         }
     }
     &__button-pannel{

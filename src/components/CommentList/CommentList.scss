@@ -38,7 +38,6 @@
         font-weight: 700;
         margin: 0;
     }
-
     &__date{
         color: $silver;
         margin: 0;
@@ -50,8 +49,19 @@
         margin: 0;
         @include body-text-styles;
     }
-
+    &__icon-pannel{
+        display:flex;
+        border-radius: 5px;
+        background-color: $mercury;
+        padding: 0.25rem;
+        margin-right: 1rem;
+    }
+    &__like-icon-count{
+        margin: 0.5rem 0 0 0.5rem;
+        
+    }
     &__delete-section{
+        display: flex;
         margin-top: 0.5rem;
         overflow: hidden;
     }

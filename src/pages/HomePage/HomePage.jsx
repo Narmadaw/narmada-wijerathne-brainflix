@@ -11,15 +11,15 @@ const HomePage = () => {
   const [selectedVideo, setSelectedVideo] = useState({});
   const [videoList, setVideoList] = useState([]);
   const [commentsList, setCommentsList] = useState([]);
-  const [likeCount, setLikeCount] = useState(0);
+  const [commentId, setCommentId] = useState('');
   const [defaultVideoId, setdefaultVideoId] = useState('');
-
+  const [flag, setFlag] = useState('');
   const apiURL = process.env.REACT_APP_API_URL;
   const params = useParams();
   
-  /*
+  /******************************************
    * GET VIDEO LIST & DEFAULT VIDEO DETAILS
-   */ 
+   ******************************************/ 
   useEffect(()=>{
     const getVideoList = async () =>{
       try{
@@ -28,37 +28,63 @@ const HomePage = () => {
         setdefaultVideoId(response.data[0].id);
       }
       catch(error){
-        alert("Error fetching video list:" ,error);
+        console.log("Error fetching video list:" ,error);
       }
     }
     getVideoList();
   }, []);
 
-  /*
-   * GET SELECTED VIDEO
-   */ 
+  /***************************************************************
+   * USEEFFECT ::  GET SELECTED VIDEO, COMMENTS LIKE & DELETE LIKE
+   ***************************************************************/ 
   useEffect(() => {
-    const getSelectedVideo = async (videoId) => {
-      console.log(videoId);
+    //1. get video list by defaultId or paramId
+    const getVideoList = async (videoId) => {
       try {
         const response = await axios.get(`${apiURL}/videos/${videoId}`);
+        console.log(response.data);
         setSelectedVideo(response.data);
         setCommentsList(response.data.comments);
+        
       } catch (error) {
-        console.error('Error fetching selected video:', error);
+        console.error('Error fetching data:', error);
+      }
+    };
+  
+    //2. handle like and delete when a passing a flag
+    const handleLikeOrDelete = async (videoId, commentId) => {
+      console.log(videoId, commentId, flag)
+      try {
+        let response;
+        if (flag === 'like') {
+          response = await axios.put(`${apiURL}/videos/${videoId}/comments/${commentId}`);
+        } else if(flag === 'delete') {
+          response = await axios.delete(`${apiURL}/videos/${videoId}/comments/${commentId}`);
+        }
+        getVideoList(videoId);
+        setFlag(null); // clear the flag 
+        setCommentId(null); // clear the commentId 
+        return response.data;
+      } catch (error) {
+        console.error(`Error ${flag} operation:`, error);
       }
     };
     if (!params.id) {
-      getSelectedVideo(defaultVideoId);
+      getVideoList(defaultVideoId);
     } else {
-      getSelectedVideo(params.id);
+      getVideoList(params.id);
     }
-  }, [defaultVideoId, params.id]);
+  
+    if (commentId) {
+      handleLikeOrDelete(params.id || defaultVideoId, commentId);
+    }
+    //dependancy array
+  }, [defaultVideoId, params.id, commentId, flag]);  
 
-   /**
-   * POST COMMENTS
-   */ 
 
+   /********************************************
+   *        POST COMMENTS
+   *********************************************/ 
    const postComment = async (commentData) => {
     const videoId = !params.id ? defaultVideoId : params.id;
     try {
@@ -67,50 +93,15 @@ const HomePage = () => {
       setCommentsList(response.data);
     } catch (error) {
       console.error('Error posting a comment', error);
-      alert('Error posting a comment');
     }
   };
 
-    /**
-   * PUT: COMMENTS LIKES
-   */
-  // useEffect(()=>{
-  //   alert("like clicked");
-  //   setLikeCount(likeCount + 1);
-
-  // }, []);
-    // const putCommentLike = async (commentId)=>{
-    //   try{
-    //     console.log(commentId);
-    //     alert("you clicked like", commentId);
-    //     // const response = await axios.put(`${apiURL}/videos/${params.id}/comments/${commentId}`);
-    //     // console.log(response.data);
-    //     // return response.data;
-    //   }
-    //   catch(error){
-    //     alert("error like comment", error);
-    //   }
-    // }
-
-  /**
-   * DELETE COMMENTS
-   */ 
-  const deleteComment = async (commentId) => {
-    const videoId = !params.id ? defaultVideoId : params.id;
-  
-    try {
-      const response = await axios.delete(`${apiURL}/videos/${videoId}/comments/${commentId}`);
-      const updatedCommentsList = commentsList.filter(comment => comment.id !== commentId);
-      setCommentsList(updatedCommentsList);
-      return response.data;
-    } catch (error) {
-      console.error('Error deleting comment', error);
-      alert('Error deleting comment');
-    }
-  };
-
-
-  /********************************** */
+  //callback function to update flag and comment id states
+  const setLikeOrDelete = (commentId, flag) => {
+    setCommentId(commentId);
+    setFlag(flag);
+  }
+ 
   return (
     <>
     <div className="home-page">
@@ -124,9 +115,7 @@ const HomePage = () => {
           <Comments 
             commentsList={commentsList}
             onFormSubmit={postComment} 
-            onClickDeleteButton={deleteComment}
-            onCommentLike={likeCount}
-            
+            onClickIcon={setLikeOrDelete}
           />
         </div>
         <div className='container__right-pannel'>

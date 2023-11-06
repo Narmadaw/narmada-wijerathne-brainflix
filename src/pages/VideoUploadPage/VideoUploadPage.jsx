@@ -1,4 +1,4 @@
-import {Link, useNavigate } from 'react-router-dom'
+import {Link, useNavigate  } from 'react-router-dom'
 import uploadImage from '../../assets/images/Upload-video-preview.jpg';
 import axios from 'axios';
 import "./VideoUploadPage.scss";
@@ -24,25 +24,45 @@ const VideoUploadPage = () =>{
 
     const handleSubmit = async (event) =>{
         event.preventDefault();
-        const vdata = {
-            image: event.target.image.files[0],
-            title: event.target.title.value,
-            description: event.target.description.value
-        };
-        try {
-            const response = await axios.post(`${process.env.REACT_APP_API_URL}/videos`, vdata
-            , {
-              headers: {
-                'Content-Type': 'multipart/form-data',
-              },
+        const image = event.target.image.files[0];
+        const title = event.target.title.value;
+        const description = event.target.description.value;
+        if (!image) {
+            alert('Please upload an image');
+          } else if (!title) {
+            alert('Please add a title');
+          } else if (!description) {
+            alert('Please add a description');
+          } else {
+            const videoData = {
+              image: image,
+              title: title,
+              description: description
+            };
+        
+            try {
+              const response = await axios.post(
+                `${process.env.REACT_APP_API_URL}/videos`,
+                videoData,
+                {
+                  headers: {
+                    'Content-Type': 'multipart/form-data',
+                  },
+                }
+              );
+              alert('Image upload success...!');
+              navigate("/");
+              // window.history.back();
+            } catch (error) {
+              console.error('Error:', error);
             }
-            );
-            alert("image upload");
-            navigate('/');
-          } catch (error) {
-            console.error('Error:', error);
-          }  
-    };
+          }
+        };
+
+    const handleCancel = (e) => {
+        e.preventDefault();
+        window.history.back();
+      };
 
     return (
         <>
@@ -52,13 +72,13 @@ const VideoUploadPage = () =>{
                 <form encType="multipart/form-data" onSubmit={handleSubmit}>
                     <div className='upload__wrapper'>
                     <div className="upload__left-image-panel">
+                        <div className='upload__image-container'>
                             <h4 className='upload__label'>VIDEO THUMBNAIL</h4> 
-                            {imageURLs.map(imageSrc => <img className="upload__thumbnail" src={imageSrc} alt="a blue bike"/>)}
-                            
-                               
-                                <input type='file' multiple name="image" accept='image/*' onChange={onImageChange} />
-                                
-                                
+                            {imageURLs.map(imageSrc => <img key={imageSrc} className="upload__thumbnail" src={imageSrc} alt="a blue bike"/>)}
+                        </div>
+                        <div className='upload__btn-container'>
+                            <input className='upload__upload-btn' type='file' multiple name="image" accept='image/*' onChange={onImageChange} />
+                        </div> 
                     </div>
                     <div className="upload__right-input-panel">
                             <h4 className='upload__label'>TITLE YOUR VIDEO</h4>
@@ -69,8 +89,8 @@ const VideoUploadPage = () =>{
                     </div>
                     </div>
                     <div className="upload__button-panel">
-                            <button className="upload__submit">PUBLISH</button>
-                            <Link to="/"><button className="upload__link">CANCEL</button></Link>
+                            <button className="upload__btn-submit">PUBLISH</button>
+                            <button className="upload__btn-cancel" onClick={handleCancel}>CANCEL</button>
                     </div>
                 </form>
             </div>       

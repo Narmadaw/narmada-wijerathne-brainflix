@@ -10,19 +10,13 @@ function App() {
  
   return (
     <BrowserRouter>
-
     <div>
-    <Header />
+      <Header />
     </div>
-
-
-    {/* TODO:: ADD A ERROR PAGE FOR 404  */}
-
     <Routes>
-    <Route path="/" element={<HomePage/>}/>
-    <Route path="/:id" element={<HomePage/>}/>
-    <Route path="/videoupload" element={<VideoUpload/>}/>
-
+      <Route path="/" element={<HomePage/>}/>
+      <Route path="/:id" element={<HomePage/>}/>
+      <Route path="/videoupload" element={<VideoUpload/>}/>
     </Routes>
     </BrowserRouter>
 
